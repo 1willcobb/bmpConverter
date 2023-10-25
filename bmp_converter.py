@@ -18,7 +18,7 @@ output_directory = os.path.join(script_directory, output_directory)
 
 # Iterate through the files in the input directory
 for filename in os.listdir(input_directory):
-    if filename.endswith(('.jpg', '.jpeg', '.png')):  # Filter for image files
+    if filename.endswith(('.jpg', '.jpeg', '.png', '.JPG', '.PNG', '.JPEG')):  # Filter for image files
         input_image_path = os.path.join(input_directory, filename)
         output_image_path = os.path.join(output_directory, filename)
 
@@ -58,7 +58,7 @@ for filename in os.listdir(input_directory):
             x_offset = (800 - new_width) // 2
 
             # Resize and paste the image onto the canvas with white space on the sides
-            image = image.resize((new_width, 480), Image.ANTIALIAS)
+            image = image.resize((new_width, 480), Image.LANCZOS)
             background.paste(image, (x_offset, 0))
 
             # Save the 1-bit BMP image
@@ -67,7 +67,7 @@ for filename in os.listdir(input_directory):
             print(f"Processing: {filename} (landscape)")
 
             # Resize the image to 800x480 pixels
-            image = image.resize((800, 480), Image.ANTIALIAS)
+            image = image.resize((800, 480), Image.LANCZOS)
 
             # Convert the image to 1-bit (black and white)
             image = image.convert("1")
